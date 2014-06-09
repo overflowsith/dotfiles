@@ -1,0 +1,11 @@
+[push]
+	default = current
+[user]
+	name = Gabriele Stefanini
+	email = gabriele.stefanini@gmail.com
+[color]
+	ui = true
+[alias]
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
+[http]
+	proxy = http://212.45.98.66:8080
