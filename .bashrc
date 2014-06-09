@@ -159,4 +159,4 @@ fi
 
 export SVN_EDITOR=vim
 
-source devel/composerAutocomplete/composer_completion
+source /home/gabriele/devel/composerAutocomplete/composer_completion
