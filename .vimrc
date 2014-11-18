@@ -1,6 +1,8 @@
 set background=dark
 set title
 set ruler
+set number
+set numberwidth=5
 syntax on
 
 set autoindent
