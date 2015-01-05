@@ -1,6 +1,6 @@
 # filesystem stuff
 
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -la'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -11,7 +11,7 @@ alias cs='du -hsx * | sort -rh | head -n 10'
 # git stuff
 
 alias gs='git status'
-alias ga='git add .'
+alias ga='git add'
 alias gd='git diff HEAD '
 alias gc='git checkout -- '
 alias gp='git pull'
