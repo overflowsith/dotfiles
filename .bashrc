@@ -21,16 +21,16 @@ function set_prompt()
     local PS1_SET_TITLE='\[\e]0;\w\a\]'
 
     local PS1_SET_TIME="${COLOR_DEFAULT}\d \t"
-    local PS1_SET_RET_CODE="${COLOR_L_RED}(\$?)"
-    local PS1_SET_USER="${COLOR_L_GREEN}\u@\h"
-    local PS1_SET_PWD="${COLOR_L_BLUE}\w"
+    local PS1_SET_RET_CODE="${COLOR_L_RED}(\$?)${COLOR_DEFAULT}"
+    local PS1_SET_USER="${COLOR_L_GREEN}\u@\h${COLOR_DEFAULT}"
+    local PS1_SET_PWD="${COLOR_L_GREEN}\w${COLOR_DEFAULT}"
+    local PS1_SET_SYMBOL="${COLOR_L_GREEN}\$${COLOR_DEFAULT}"
 
-    local PS1_LN_1="${PS1_SET_TITLE}"
-    local PS1_LN_2="${PS1_SET_TIME} "
-    local PS1_LN_2="${PS1_LN_2}${PS1_SET_USER} ${PS1_SET_PWD} ${COLOR_DEFAULT}"
+    local PS1_LN_1=""
+    local PS1_LN_2="${PS1_SET_PWD} "
     local PS1_GIT="${COLOR_YELLOW}\$(__git_ps1 '%s')${COLOR_DEFAULT}"
-    # [\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    echo "${PS1_LN_1}\n${PS1_LN_2}${PS1_GIT}\n\$ "
+
+    echo "${PS1_LN_1}\n${PS1_LN_2}${PS1_GIT}\n${PS1_SET_SYMBOL} "
 }
 
 function google()
