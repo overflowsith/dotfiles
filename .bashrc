@@ -83,7 +83,7 @@ case "$TERM" in
 esac
 
 if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion.d/git
+    . /etc/bash_completion.d/git-prompt
 fi
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
