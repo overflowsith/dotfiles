@@ -14,7 +14,7 @@ alias gs='git status'
 alias ga='git add'
 alias gd='git diff HEAD '
 alias gc='git checkout -- '
-alias gp='git pull'
+alias gp='git pull --rebase'
 alias gpa='git pull && cd app/core && git pull && ... && grunt'
 
 
