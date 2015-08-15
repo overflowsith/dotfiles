@@ -23,11 +23,12 @@ function set_prompt()
     local PS1_SET_TIME="${COLOR_DEFAULT}\d \t"
     local PS1_SET_RET_CODE="${COLOR_L_RED}(\$?)${COLOR_DEFAULT}"
     local PS1_SET_USER="${COLOR_L_GREEN}\u@\h${COLOR_DEFAULT}"
+    local PS1_SET_HOST="${COLOR_L_GREEN}\h${COLOR_DEFAULT}"
     local PS1_SET_PWD="${COLOR_L_GREEN}\w${COLOR_DEFAULT}"
     local PS1_SET_SYMBOL="${COLOR_L_GREEN}\$${COLOR_DEFAULT}"
 
     local PS1_LN_1=""
-    local PS1_LN_2="${PS1_SET_PWD} "
+    local PS1_LN_2="${PS1_SET_HOST} ${PS1_SET_PWD} "
     local PS1_GIT="${COLOR_YELLOW}\$(__git_ps1 '%s')${COLOR_DEFAULT}"
 
     echo "${PS1_LN_1}\n${PS1_LN_2}${PS1_GIT}\n${PS1_SET_SYMBOL} "
@@ -83,7 +84,7 @@ case "$TERM" in
 esac
 
 if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion.d/git
+    . /etc/bash_completion.d/git-prompt
 fi
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
