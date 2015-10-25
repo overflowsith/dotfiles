@@ -53,7 +53,7 @@ esac
 
 # shopt -s histappend
 export HISTCONTROL=ignoreboth
-export HISTIGNORE="history*:cd*:mkdir*:exit:ls*:la*:ll*:subl *"
+export HISTIGNORE="history*:cd*:mkdir*:exit:ls*:la*:ll*:gs:gc:ga*:git commit*:gp:git push*:git pull*"
 export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 
@@ -155,6 +155,19 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+if [ -f $HOME/Utilities/composerAutocomplete/composer_completion ]; then
+    . $HOME/Utilities/composerAutocomplete/composer_completion
+fi
+
+if [ -d $HOME/bin ]; then
+	export PATH=$HOME/bin:$PATH
+fi
+
+if [ -d $HOME/Android/Sdk ]; then
+	export PATH=$PATH:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/platform-tools
+fi
+
 
 
 export SVN_EDITOR=vim
