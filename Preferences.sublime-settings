@@ -38,8 +38,11 @@
 	"sidebar_small": true,
 	"tab_size": 4,
 	"tabs_small": true,
-	"theme": "predawn-DEV.sublime-theme",
+	"theme": "Afterglow-blue.sublime-theme",
+	"folder_no_icon": true,
+	"tabs_small": true,
 	"translate_tabs_to_spaces": true,
+	"color_inactive_tabs": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": false
 }
