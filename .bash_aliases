@@ -26,7 +26,8 @@ alias i='python -m SimpleHTTPServer'
 alias py3='python3'
 alias sudo='sudo '
 alias fuck='sudo $(history -p \!\!)'
-
+alias a='atom .'
+alias s='subl .'
 
 # PHP stuff
 
@@ -34,3 +35,9 @@ alias artisan='php artisan'
 alias cc='php artisan cache:clear'
 alias cda='composer dump-autoload'
 
+
+# grep
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
