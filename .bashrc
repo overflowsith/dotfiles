@@ -31,7 +31,7 @@ function set_prompt()
     local PS1_LN_2="${PS1_SET_HOST} ${PS1_SET_PWD} "
     local PS1_GIT="${COLOR_YELLOW}\$(__git_ps1 '%s')${COLOR_DEFAULT}"
 
-    echo "${PS1_LN_1}\n${PS1_LN_2}${PS1_GIT}\n${PS1_SET_SYMBOL} "
+    echo "${PS1_LN_1}\n${PS1_LN_2}${PS1_GIT}\n "
 }
 
 function google()

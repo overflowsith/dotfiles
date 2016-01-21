@@ -6,16 +6,18 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cs='du -hsx * | sort -rh | head -n 10'
-
+alias mkdir='mkdir -pv'
 
 # git stuff
-
-alias gs='git status'
+alias g='git'
 alias ga='git add'
+alias gb='git branch'
+alias gs='git status'
 alias gd='git diff HEAD '
-alias gc='git checkout -- '
+alias gc='git checkout '
+alias gr='git checkout -- '
 alias gp='git pull --rebase'
-alias gpa='git pull && cd app/core && git pull && ... && grunt'
+alias gob='git checkout -b '
 
 
 # utility stuff
@@ -28,6 +30,8 @@ alias sudo='sudo '
 alias fuck='sudo $(history -p \!\!)'
 alias a='atom .'
 alias s='subl .'
+alias ports='netstat -tulanp'
+alias wget='wget -c'
 
 # PHP stuff
 
