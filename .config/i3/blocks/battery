@@ -55,6 +55,6 @@ END {
 	# color
 	gsub(/%$/,"",percentage)
 	if (+ percentage < + alert_low)
-		print "#FF0000"
+		print "#BE5046"
 }
 '

@@ -14,16 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-load="$(cut -d ' ' -f1 /proc/loadavg)"
+load="$(cut -d ' ' -f1-3 /proc/loadavg)"
 cpus="$(nproc)"
 
 # full text
-echo "$load"
+#echo "$cpus"
 
 # short text
 echo "$load"
 
 # color if load is too high
 if [ $(awk 'BEGIN{ print "'$cpus'"<="'$load'" }') -eq 1 ]; then
-	echo "#FF0000"
+	echo "#BE5046"
 fi
