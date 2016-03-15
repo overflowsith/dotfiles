@@ -1,0 +1,94 @@
+! clean up urxvt, add keybinds
+URxvt.intensityStyles: false
+URxvt.scrollBar: false
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! font
+URxvt*font: xft:Fira\ Mono\ for\ Powerline:size=9:antialias=true:hinting=true,xft:Fira\ Mono\ for\ Powerline:size=9:antialias=true:hinting=true
+URxvt.letterSpace: -0.5
+! terminal padding
+URxvt.internalBorder: 10
+
+! uncomment for transparent terminal if you are ready to be made fun of in #rice
+! URxvt.transparent:  true
+! URxvt.shading:    15
+
+! make otf / ttf fonts look pretty.  does not matter if you are using a bitmap font.
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! clickable links, clipboard support, mouse wheel support, and on the fly font resizing
+! you will need to install the relevent perl extensions for these to work
+URxvt.perl-ext-common: default,matcher,clipboard,vtwheel,resize-font
+URxvt.url-launcher: ~/.local/bin/firefox/firefox
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5
+
+! special
+*.foreground:   #abb2bf
+*.background:   #1e2127
+*.cursorColor:  #abb2bf
+
+! black
+*.color0:       #000000
+*.color8:       #5c6370
+
+! red
+*.color1:       #e06c75
+*.color9:       #e06c75
+
+! green
+*.color2:       #98c379
+*.color10:      #98c379
+
+! yellow
+*.color3:       #d19a66
+*.color11:      #d19a66
+
+! blue
+*.color4:       #61afef
+*.color12:      #61afef
+
+! magenta
+*.color5:       #c678dd
+*.color13:      #c678dd
+
+! cyan
+*.color6:       #56b6c2
+*.color14:      #56b6c2
+
+! white
+*.color7:       #abb2bf
+*.color15:      #ffffff
+
+rofi.opacity:          90
+rofi.width:            960
+rofi.lines:            10
+rofi.columns:          1
+rofi.color-enabled:    true
+rofi.font:             Fira Mono for Powerline  10
+rofi.color-normal:     #1e2127,#abb2bf,#1e2127,#282C34,#61afef
+!rofi.color-urgent:    #1e2127,#d79921,#1e2127,#d79921,#1e2127
+rofi.color-active:     #61afef,#1e2127,#61afef,#282C34,#61afef
+rofi.color-window:     #1e2127,#1e2127
+rofi.hide-scrollbar:   true
+rofi.separator-style:  none
+rofi.padding:          10
+rofi.fuzzy:            true
+rofi.modi:             window,run,ssh
+rofi.pid:              /run/user/1000/rofi.pid
+rofi.terminal:         urxvtc
+rofi.ssh-command:      {terminal} -e {ssh-client} {host}
+rofi.dmenu:            true
+rofi.show:             window,run,ssh
+rofi.kb-mode-next:     Shift+Right,Control+Tab
+rofi.kb-mode-previous: Shift+Left,Control+Shift+Tab
