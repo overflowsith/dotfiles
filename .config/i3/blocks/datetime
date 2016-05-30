@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+case $BLOCK_BUTTON in
+  1) gsimplecal ;;                     # left click, open config
+esac
+
+print_date() {
+  echo "`date +'%a %d %b'`"
+}
+
+print_time() {
+  echo "`date +'%H:%M'`"
+}
+
+whatprint="${1:-date}"
+
+echo $whatprint
+echo $whatprint
+echo $whatprint
+
+if [[ "${whatprint}" = "time" ]]; then
+  print_time()
+else
+  print_date()
+fi

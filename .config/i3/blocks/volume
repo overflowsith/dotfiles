@@ -14,34 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-INTERFACE="${1:-eno1}"
-LABEL="${2:-} "
+CARD="${1:-0}"
+MIXER="${2:-default}" # use pulse for pulseaudio, default is alsa
+SCONTROL="${3:-Master}"
 
-state="$(cat /sys/class/net/$INTERFACE/operstate)"
+case $BLOCK_BUTTON in
+  1) pavucontrol ;;                     # left click, open config
+  3) amixer -q sset $SCONTROL toggle ;; # right click, mute/unmute
+  4) amixer -q sset $SCONTROL 10%+ ;;   # scroll up, increase
+  5) amixer -q sset $SCONTROL 10%- ;;   # scroll down, decrease
+esac
 
-if [ "$state" != "up" ]; then
-	echo "$LABEL"
-	echo "$LABEL"
-	exit 0
-else
-  #if [[ -d "/sys/class/net/$INTERFACE/wireless" ]]; then
-  #  quality=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
-  #  echo "$LABEL ${quality}%"
-  #else
-  #  echo "$LABEL"
-  #fi
-  echo "$LABEL"
-  echo "$LABEL"
-  echo "#b5bd68"
-  exit 0
-fi
+volume () {
+  amixer -c $CARD -M -D $MIXER get $SCONTROL
+}
 
-#ipaddr="$(ip addr show $INTERFACE | perl -n -e'/inet (.+)\// && print $1')"
-#ipaddr="${ipaddr:-0.0.0.0}"
+format () {
+  perl -ne 'if (/\[(\d+%)\].*\[(on|off)\]/) {CORE::say $2 eq "off" ? "   " : " $1"; exit}'
+}
 
-# full text
-#echo -n "$LABEL$ipaddr"
-#[ -n "$speed" ] && echo "($speed Mbits/s)" || echo
-
-# short text
-#echo "$LABEL 098"
+volume | format

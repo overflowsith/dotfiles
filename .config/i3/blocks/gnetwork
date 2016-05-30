@@ -14,34 +14,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-INTERFACE="${1:-eno1}"
-LABEL="${2:-} "
+interface='wlo1'
+label=""
 
-state="$(cat /sys/class/net/$INTERFACE/operstate)"
+state="$(cat /sys/class/net/"$interface"/operstate)"
 
-if [ "$state" != "up" ]; then
-	echo "$LABEL"
-	echo "$LABEL"
-	exit 0
-else
-  #if [[ -d "/sys/class/net/$INTERFACE/wireless" ]]; then
-  #  quality=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
-  #  echo "$LABEL ${quality}%"
-  #else
-  #  echo "$LABEL"
-  #fi
-  echo "$LABEL"
-  echo "$LABEL"
-  echo "#b5bd68"
+if [ "$state" == "up" ]; then
+	echo "$label"
+	echo "$label"
+  echo "#46BE50"
   exit 0
 fi
 
-#ipaddr="$(ip addr show $INTERFACE | perl -n -e'/inet (.+)\// && print $1')"
-#ipaddr="${ipaddr:-0.0.0.0}"
+interface='eno1'
 
-# full text
-#echo -n "$LABEL$ipaddr"
-#[ -n "$speed" ] && echo "($speed Mbits/s)" || echo
+state="$(cat /sys/class/net/"$interface"/operstate)"
 
-# short text
-#echo "$LABEL 098"
+if [ "$state" == "up" ]; then
+	echo "$label"
+	echo "$label"
+  echo "#46BE50"
+  exit 0
+fi
+
