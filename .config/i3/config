@@ -16,62 +16,101 @@ set $ws5         "5:"
 set $ws6         "6:6"
 set $ws7         "7:7"
 set $ws8         "8:8"
-set $ws9         "9:9"
+set $ws9         "9:"
 
-set $bg-color            #1d1f21
-set $bg-hl-color         #50565b
-set $fg-color            #c5c8c6
-set $fg-hl-color         #f0c674
-set $inactive-bg-color   #1d1f21
-set $text-color          #c5c8c6
-set $inactive-text-color #969896
-set $urgent-bg-color     #cc6666
+set $bg-color            #37474f
+set $bg-hl-color         #607d8b
+set $inactive-bg-color   #212121
+
+set $fg-color            #cfd8dc
+set $fg-hl-color         #ffffff
+set $inactive-text-color #757575
+
+set $text-color          #cfd8dc
+
+set $urgent-bg-color     #ff5252
 set $urgent-fg-color     #ffffff
+
+
+set_from_resource $darkred     color1  #000000
+set_from_resource $red         color9  #000000
+set_from_resource $darkgreen   color2  #000000
+set_from_resource $green       color10 #000000
+set_from_resource $darkyellow  color3  #000000
+set_from_resource $yellow      color11 #000000
+set_from_resource $darkblue    color4  #000000
+set_from_resource $blue        color12 #000000
+set_from_resource $darkmagenta color5  #000000
+set_from_resource $magenta     color13 #000000
+set_from_resource $darkcyan    color6  #000000
+set_from_resource $cyan        color14 #000000
+set_from_resource $darkwhite   color7  #000000
+set_from_resource $white       color15 #000000
+
+set $darkbluegrey #37474f
+set $bluegrey     #607d8b
+
+# Use custom colors for black
+set $black       #424242
+set $darkblack   #212121
+set $transparent #00000066
+
 
 # aesthetics
 font pango:Roboto 10
 for_window [class="^.*"] border pixel 0
 for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
 for_window [window_role="About"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_role="menu"] floating enable
+for_window [window_role="Preferences"] floating enable
 for_window [window_role="Organizer"] floating enable
 for_window [class="Navigator"] floating enable
-#smart_gaps on
-gaps inner 25
+for_window [class="(?i)pavucontrol"] floating enable
+
+assign [class="(?i)thunderbird"] $ws4
+
+#smart_gaps on # if only 1 window, no gaps
+gaps inner 12
 gaps outer 0
 hide_edge_borders both
 focus_follows_mouse no
 
-# i3bar
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
 bar {
     position    top
-    font pango:Roboto 9, Fira Mono For Powerline, FontAwesome 9
+    font pango: Fira Mono, FontAwesome 9
     status_command i3blocks -c /home/gabriele/.config/i3/blocks.conf
+    i3bar_command i3bar -t
     tray_output none
-    tray_padding 1
+    tray_padding 0
+    height 26
     separator_symbol " "
     strip_workspace_numbers yes
     colors {
-        background  $bg-color
-        statusline  $fg-color
-        #                  border               background           text
-        inactive_workspace $bg-color            $bg-color            $inactive-text-color
-        focused_workspace  $bg-hl-color         $bg-hl-color         $fg-hl-color
-        urgent_workspace   $urgent-bg-color     $urgent-bg-color     $urgent-fg-color
-        #                   border  backgr  text
-        focused_workspace   #373b41 #373b41 #f0c674
-        active_workspace    #373b41 #373b41 #f0c674
-        inactive_workspace  #1d1f21 #1d1f21 #969896
-        urgent_workspace    #cc6666 #cc6666 #ffffff
+        background                              $transparent
+        statusline                              $yellow
+
+        #                  border             background         text
+        active_workspace   $transparent       $transparent       $yellow
+        inactive_workspace $transparent       $transparent       $darkwhite
+        focused_workspace  $transparent       $transparent       $yellow
+        urgent_workspace   $transparent       $red               $white
     }
 }
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.focused          $darkbluegrey       $darkbluegrey      $text-color          $black
+client.unfocused        $darkbluegrey       $darkbluegrey      $inactive-text-color $bg-hl-color
+client.focused_inactive $darkbluegrey       $darkbluegrey      $inactive-text-color $bg-hl-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-hl-color
+client.placeholder      $bg-color           $bg-color          $text-color          $bg-hl-color
+client.background       $bg-color
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -92,7 +131,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -103,36 +143,20 @@ bindsym Mod1+F4 kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#bindsym $mod+d exec --no-startup-id ~/.local/bin/i3menu
-#bindsym $mod+F2 exec i3-dmenu-desktop --dmenu='rofi -p "run: " -dmenu -show run -font "Fira Mono for Powerline 8" -fg "#abb2bf" -bg "#282c34" -hlfg "#2f343d" -hlbg "#61afef" -width 800 -lines 10 -padding 2 -separator-style none -hide-scrollbar'
-#bindsym $mod+F2 exec i3-dmenu-desktop --dmenu='rofi -dmenu'
 bindsym $mod+d exec --no-startup-id rofi -show drun 
-#bindsym $mod+d exec --no-starup-id ~/.local/bin/i3menu
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -show run'
 bindsym Mod1+Tab exec --no-startup-id rofi -show window 
-bindsym $mod+Shift+n exec --no-startup-id nautilus
-bindsym $mod+Shift+t exec --no-startup-id ~/.local/bin/thunderbird-dev
+
+#bindsym $mod+Shift+n exec --no-startup-id nautilus
+#bindsym $mod+Shift+t exec --no-startup-id ~/.local/bin/thunderbird-dev
 
 # change focus
-#bindsym $mod+j focus left
-#bindsym $mod+k focus down
-#bindsym $mod+l focus up
-#bindsym $mod+ograve focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ograve move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -202,12 +226,6 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -220,12 +238,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#        tray_output primary
-#}
 
 bindsym $mod+m                exec "amixer -q sset Master,0 toggle"
 bindsym $mod+comma            exec "amixer -q sset Master 10%- unmute"
@@ -258,8 +270,11 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 bindsym $mod+l exec --no-startup-id $i3exit lock, mode "default"
 
-exec urxvtd -q -o -f
+#exec urxvtd -q -o -f
 exec /usr/libexec/gnome-settings-daemon
 exec export $(gnome-keyring-daemon -s)
 exec_always compton --config ~/.config/compton.conf
-exec_always feh --bg-scale ~/Pictures/wallpaper
+#exec_always nitrogen --restore
+exec /home/gabriele/.local/bin/start-mpd
+exec redshift
+#exec_always feh --bg-scale ~/Pictures/wallpaper

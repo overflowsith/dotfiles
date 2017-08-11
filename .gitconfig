@@ -1,11 +1,30 @@
 [push]
-	default = current
+    default = current
+
+    # Make `git push` push relevant annotated tags when pushing branches out.
+    followTags = true
+
 [user]
 	name = Gabriele Stefanini
-	email = gabriele.stefanini@gmail.com
+  email = gabriele.stefanini@gmail.com
+
 [color]
-	ui = true
+  ui = true
+  diff = auto
+  branch = auto
+  status = auto
+
 [alias]
     unstage = reset HEAD
+    
+    # * 2064780 - (HEAD -> branch) message (42 minutes ago) <auth>
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
-    hours = log --merges --committer='Gabriele Stefanini' --pretty='%cd' | cut -d' ' -f4 | cut -d: -f1 | sort -n | uniq -c
+    
+    # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+[advice]
+  statusHints = false
+
+[core]
+	editor = vim

@@ -22,9 +22,9 @@ function set_prompt()
 
     local PS1_SET_TIME="${COLOR_DEFAULT}\d \t"
     local PS1_SET_RET_CODE="${COLOR_L_RED}(\$?)${COLOR_DEFAULT}"
-    local PS1_SET_USER="${COLOR_L_GREEN}\u@\h${COLOR_DEFAULT}"
-    local PS1_SET_HOST="${COLOR_L_GREEN}\h${COLOR_DEFAULT}"
-    local PS1_SET_PWD="${COLOR_L_GREEN}\w${COLOR_DEFAULT}"
+    local PS1_SET_USER="${COLOR_L_GREEN}\u${COLOR_DEFAULT}"
+    local PS1_SET_HOST="${COLOR_DARK_GRAY}localhost${COLOR_DEFAULT}"
+    local PS1_SET_PWD="${COLOR_L_BLUE}\w${COLOR_DEFAULT}"
     local PS1_SET_SYMBOL="${COLOR_L_GREEN}\$${COLOR_DEFAULT}"
 
     local PS1_LN_1=""
@@ -39,9 +39,16 @@ function google()
     x-www-browser "https://www.google.com/search?q=$1";
 }
 
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# append to the history file, don't overwrite it
+shopt -s histappend
+shopt -s checkwinsize
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTCONTROL=ignoreboth:erasedups
+HISTSIZE=10000
+HISTFILESIZE=$HISTSIZE
+HISTTIMEFORMAT="%s "
+PROMPT_COMMAND='history -a'
 
 # If not running interactively, don't do anything
 case $- in
@@ -49,97 +56,32 @@ case $- in
       *) return;;
 esac
 
-# HISTORY CONFIG
-
-# shopt -s histappend
-export HISTCONTROL=ignoreboth
-export HISTIGNORE="history*:cd*:mkdir*:exit:ls*:la*:ll*:gs:gc:ga*:git commit*:gp:git push*:git pull*"
-export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
-
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=10000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion.d/git-prompt
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+      . /usr/share/git/completion/git-completion.bash
 fi
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+      . /usr/share/git/completion/git-prompt.sh
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1=$(set_prompt)
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+PS1=$(set_prompt)
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -156,19 +98,57 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f $HOME/Utilities/composerAutocomplete/composer_completion ]; then
-    . $HOME/Utilities/composerAutocomplete/composer_completion
+if [ -f ~/utilities/composerAutocomplete/composer_completion ] ; then
+    . ~/utilities/composerAutocomplete/composer_completion
 fi
 
-if [ -d $HOME/bin ]; then
-	export PATH=$HOME/bin:$PATH
+export GOPATH=$HOME/.local/go
+
+# set PATH so it includes user's private bin if it exists
+if [ -d $HOME/.local/bin ] ; then
+    PATH=$HOME/.local/bin:$PATH
 fi
 
-if [ -d $HOME/Android/Sdk ]; then
-	export PATH=$PATH:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/platform-tools
+if [ -d $HOME/.composer/vendor/bin ] ; then
+    PATH=$HOME/.composer/vendor/bin:$PATH
+fi
+
+if [ -d $HOME/.local/bin/heroku/bin ] ; then
+    PATH=$PATH:$HOME/.local/bin/heroku/bin
+fi
+
+if [ -d $HOME/.gem/ruby ] ; then
+    PATH=$PATH:$HOME/.gem/ruby
+fi
+
+if [ -d $GOPATH/bin ] ; then
+    PATH=$PATH:$GOPATH/bin
+fi
+
+if [ -d $HOME/Android/Sdk/tools ] ; then
+    PATH=$PATH:$HOME/Android/Sdk/tools
+fi
+if [ -d $HOME/Android/Sdk/platform-tools ] ; then
+    PATH=$PATH:$HOME/Android/Sdk/platform-tools
 fi
 
 
+NODE_PATH=$HOME/.local/lib/node_modules:NODE_PATH
 
-export SVN_EDITOR=vim
+#export TERMINAL=urxvtc
+export TERMINAL=termite
 
+export EDITOR=vim
+
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+export JAVA_FONTS=/usr/share/fonts/TTF
+
+
+export RANGER_LOAD_DEFAULT_RC=false
+
+if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune ]; then
+    fortune -a | cowsay
+fi

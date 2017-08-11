@@ -1,0 +1,50 @@
+[options]
+font = Fira Mono 10
+mouse_autohide = true
+clickable_url = true
+allow_bold = true
+cursor_blink = off
+cursor_shape = block
+scrollback_lines = 10000
+
+[colors]
+# special
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background      = #282a36
+hightlight      = #44475a
+
+# black
+color0  = #44475a
+color8  = #44475a
+
+# red
+color1  = #ff5555
+color9  = #ff5555
+
+# green
+color2  = #50fa7b
+color10 = #50fa7b
+
+# yellow
+color3  = #f1fa8c
+color11 = #f1fa8c
+
+# blue
+color4  = #6272a4
+color12 = #6272a4
+
+# magenta
+color5  = #ff79c6
+color13 = #bd93f9
+
+# cyan
+color6  = #8be9fd
+color14 = #8be9fd
+
+# white
+color7  = #f8f8f2
+color15 = #f8f8f2
+
+# vim: ft=dosini cms=#%s
