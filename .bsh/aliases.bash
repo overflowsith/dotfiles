@@ -1,9 +1,16 @@
 alias vi='vim'
 alias vim='vim'
 
+# config
+alias i3config='vim ~/.config/i3/config'
+alias vimrc='vim ~/.vimrc'
+alias bashrc='vim ~/.bashrc'
+alias reload='source ~/.bashrc'
+alias dev='cd ~/dev'
+
 # filesystem stuff
 
-alias ll='ls -lh'
+alias ll='ls -lh --full-time --time-style=long-iso'
 alias la='ls -la'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -39,13 +46,15 @@ alias a='atom .'
 alias s='subl .'
 alias ports='netstat -tulanp'
 alias wget='wget -c'
+alias cal='cal -m'
+# alias cat='bat'
 
 # PHP stuff
 
 alias artisan='php artisan'
-alias cc='php artisan cache:clear'
+alias cons='bin/console'
 alias cda='composer dump-autoload'
-alias pu='vendor/bin/phpunit'
+alias pu='./vendor/bin/phpunit'
 
 # grep
 
