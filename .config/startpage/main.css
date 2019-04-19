@@ -7,7 +7,7 @@ html {
   font-size: 16px;
 }
 body {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-family: system-ui,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ body {
   overflow-x: hidden;
   color: #769aa5;
   text-align: center;
-  background-color: #212121;
+  background-color: #080b21;
   /*background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);*/
   /*background-image: linear-gradient(to right bottom, #282a36, #2f4757, #32666f, #48867b, #78a37c);*/
 }
@@ -127,6 +127,9 @@ a.vuejs {
 a.react {
   background-color: rgb(97, 218, 251);
 }
+a.gatsby {
+  background-color: rgb(102, 51, 153);
+}
 a.bootstrap {
   background-color: rgb(86, 61, 124);
 }
@@ -136,6 +139,9 @@ a.fontawesome {
 a.bulma {
   background-color: rgb(0, 209, 178);
   background-image: linear-gradient(141deg, rgb(0, 158, 108) 0%, rgb(0, 209, 178) 71%, rgb(0, 231, 235) 100%);
+}
+a.tailwind {
+  background-color: #f8fafc;
 }
 a.csstricks {
   background-color: rgb(255, 152, 0);

@@ -22,17 +22,20 @@
     </ul>
     <ul class="menu-list">
       <li><a target="_blank" rel="nofollow" class="trello" href="https://trello.com"><i class="fa fa-trello fa-2x"></i></a></li>
-      <li><a target="_blank" rel="nofollow" class="heroku" href="https://heroku.com">Heroku</a></li>
-      <li><a target="_blank" rel="nofollow" class="pusher" href="https://pusher.com">Pusher</a></li>
-      <li><a target="_blank" rel="nofollow" class="mailtrap" href="https://mailtrap.io">Mailtrap</a></li>
     </ul>
     <ul class="menu-list">
+      <li><a target="_blank" rel="nofollow" class="heroku" href="https://heroku.com">Heroku</a></li>
+      <li><a title="GitHub Login" target="_blank" rel="nofollow" class="pusher" href="https://pusher.com">Pusher</a></li>
+      <li><a title="GitHub Login" target="_blank" rel="nofollow" class="mailtrap" href="https://mailtrap.io">Mailtrap</a></li>
+    </ul>
+    <ul class="menu-list">
+      <li><a target="_blank" rel="nofollow" class="laravel" href="https://laravel.com/docs/5.8">Laravel <span style="font-size: 1.5em;">5.8</span></a></li>
       <li><a target="_blank" rel="nofollow" class="laravel" href="https://laravel.com/docs/5.7">Laravel <span style="font-size: 1.5em;">5.7</span></a></li>
       <li><a target="_blank" rel="nofollow" class="laravel" href="https://laravel.com/docs/5.6">Laravel <span style="font-size: 1.5em;">5.6</span></a></li>
       <li><a target="_blank" rel="nofollow" class="laravel" href="https://laravel.com/docs/5.4">Laravel <span style="font-size: 1.5em;">5.4</span></a></li>
     </ul>
     <ul class="menu-list">
-      <li><a target="_blank" rel="nofollow" class="symfony" href="https://symfony.com/doc/current/index.html">Symfony <span style="font-size: 1.5em;">4.1</span></a></li>
+      <li><a target="_blank" rel="nofollow" class="symfony" href="https://symfony.com/doc/current/index.html">Symfony</a></li>
     </ul>
     <ul class="menu-list">
       <li><a target="_blank" rel="nofollow" class="vuejs" href="https://vuejs.org">Vue.js</a></li>
@@ -45,10 +48,16 @@
       <li><a target="_blank" rel="nofollow" class="react" href="https://redux.js.org/">Redux</a></li>
     </ul>
     <ul class="menu-list">
+      <li><a target="_blank" rel="nofollow" class="gatsby" href="https://www.gatsbyjs.org/">Gatsby.js</a></li>
+    </ul>
+    <ul class="menu-list">
       <li><a target="_blank" rel="nofollow" class="bootstrap" href="https://getbootstrap.com">Bootstrap</a></li>
       <li><a target="_blank" rel="nofollow" class="materialize" href="http://materializecss.com">Materialize</a></li>
       <li><a target="_blank" rel="nofollow" class="fontawesome" href="http://fontawesome.io"><i class="fa fa-font-awesome fa-2x"></i></a></li>
       <li><a target="_blank" rel="nofollow" class="bulma" href="http://bulma.io/documentation/overview/start">Bulma</a></li>
+      <li><a target="_blank" rel="nofollow" class="tailwind" href="https://tailwindcss.com/docs/what-is-tailwind/">
+        <svg style="width:2rem;height:2rem;display:block;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 11.1C15.3 3.9 19.8.3 27 .3c10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 27.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" transform="translate(5 16)" fill="url(#logoGradient)" fill-rule="evenodd"></path></svg>
+      </a></li>
     </ul>
     <ul class="menu-list">
       <li><a target="_blank" rel="nofollow" class="codepen" href="https://codepen.io"><i class="fa fa-codepen fa-2x"></i></a></li>
@@ -58,8 +67,44 @@
     <ul class="menu-list">
       <li><a target="_blank" rel="nofollow" class="reddit" href="https://reddit.com"><i class="fa fa-reddit fa-2x"></i></a></li>
     </ul>
+    <ul class="menu-list">
+      <li>undraw.co/illustrations</li>
+    </ul>
 
   </main>
+  <script>
+    const bookmarks = [
+      {
+        url: 'https://mail.google.com',
+        name: 'gmail',
+        tags: ['email']
+      },
+      {
+        url: 'https://outlook.com',
+        name: 'outlook',
+        tags: ['email']
+      },
+      {
+        url: 'http://mail.nexxa.it',
+        name: 'nexxa',
+        tags: ['email', 'work']
+      }
+    ];
+  </script>
+  <script src="keymaster.js"></script>
+  <script>
+    key('⇧+p', (event, handler) => alert('yeeee'));
+  </script>
+
+<!--Tailwindcss logo gradient referenced in the svg-->
+<svg style="height: 0; width: 0; position: absolute; visibility: hidden;">
+  <defs>
+    <linearGradient x1="0%" y1="0%" y2="100%" id="logoGradient">
+      <stop stop-color="#2383AE" offset="0%"></stop>
+      <stop stop-color="#6DD7B9" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+</svg>
 </body>
 
 </html>
