@@ -159,6 +159,9 @@ a.mailtrap {
   background-color: #313a45;
   color: #009999;
 }
+a.netlify {
+  background-color: #f4f7f8;
+}
 a.codepen {
   background-color: #191919;
   color: #ffffff;
